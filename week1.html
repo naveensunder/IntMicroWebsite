@@ -317,9 +317,78 @@
     .props-list li { display:flex; align-items:flex-start; gap:0.55rem; font-size:0.84rem; line-height:1.5; padding:0.42rem 0.7rem; background:var(--off-white); border:1px solid var(--rule); border-radius:6px; }
     .prop-bullet { flex-shrink:0; width:6px; height:6px; border-radius:50%; background:var(--accent); margin-top:0.48rem; }
 
+
+    /* ── Left week nav ─────────────────────────────── */
+    .left-nav {
+      position: fixed; top: 52px; left: 0; width: 200px;
+      height: calc(100vh - 52px); background: var(--white);
+      border-right: 1px solid var(--rule); overflow-y: auto;
+      z-index: 150; transform: translateX(-100%); transition: transform 0.25s ease;
+      display: flex; flex-direction: column; padding: 0.75rem 0;
+    }
+    .left-nav.open { transform: translateX(0); }
+    .left-nav-header {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted);
+      padding: 0.4rem 1rem 0.5rem; border-bottom: 1px solid var(--rule);
+      margin-bottom: 0.35rem;
+    }
+    .left-nav ul { list-style: none; padding: 0; margin: 0; }
+    .left-nav-item a, .left-nav-item span {
+      display: flex; align-items: baseline; gap: 0.4rem;
+      padding: 0.32rem 1rem; font-size: 0.78rem; color: var(--text);
+      text-decoration: none; line-height: 1.35; transition: background 0.1s;
+    }
+    .left-nav-item a:hover { background: var(--accent-light); color: var(--accent); }
+    .left-nav-item.active > a {
+      background: var(--accent-light); color: var(--accent); font-weight: 600;
+      border-left: 3px solid var(--accent); padding-left: calc(1rem - 3px);
+    }
+    .left-nav-item.upcoming span { color: var(--muted); cursor: default; }
+    .ln-num { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); flex-shrink: 0; min-width: 22px; }
+    .left-nav-item.upcoming .ln-num { color: var(--rule); }
+    .ln-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-left: auto; margin-right: 0.1rem; }
+    .ln-dot.published { background: #16a34a; }
+    .ln-dot.upcoming  { background: var(--rule); }
+    .left-nav-toggle {
+      display: flex; align-items: center; gap: 0.35rem;
+      background: none; border: 1px solid var(--rule); border-radius: 6px;
+      padding: 0.28rem 0.65rem; font-family: var(--font); font-size: 0.75rem;
+      color: var(--muted); cursor: pointer; transition: all 0.15s;
+    }
+    .left-nav-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .left-nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.15); z-index: 140; }
+    .left-nav-overlay.open { display: block; }
+    @media (min-width: 900px) {
+      .left-nav { transform: translateX(0); }
+      .left-nav-overlay { display: none !important; }
+      .left-nav-toggle { display: none; }
+      .main { margin-left: 200px; }
+    }
+    @media (max-width: 899px) { .main { margin-left: 0; } }
+
   </style>
 </head>
 <body>
+
+<div class="left-nav-overlay" id="lnOverlay" onclick="closeLN()"></div>
+<nav class="left-nav" id="leftNav" aria-label="Course weeks">
+  <div class="left-nav-header">EC224 &mdash; All Weeks</div>
+  <ul>
+    <li class="left-nav-item published active"><a href="week1.html"><span class="ln-num">W1</span>Foundations<span class="ln-dot published"></span></a></li>
+    <li class="left-nav-item published"><a href="week2.html"><span class="ln-num">W2</span>Consumer Optimum<span class="ln-dot published"></span></a></li>
+    <li class="left-nav-item upcoming"><span><span class="ln-num">W3</span>Demand Curves<span class="ln-dot upcoming"></span></span></li>
+    <li class="left-nav-item upcoming"><span><span class="ln-num">W4</span>Elasticity &amp; Welfare<span class="ln-dot upcoming"></span></span></li>
+    <li class="left-nav-item upcoming"><span><span class="ln-num">W5</span>Production &amp; Isoquants<span class="ln-dot upcoming"></span></span></li>
+    <li class="left-nav-item upcoming"><span><span class="ln-num">W6</span>Cost Curves<span class="ln-dot upcoming"></span></span></li>
+    <li class="left-nav-item upcoming"><span><span class="ln-num">W7</span>Profit &amp; Supply<span class="ln-dot upcoming"></span></span></li>
+    <li class="left-nav-item upcoming"><span><span class="ln-num">W8</span>Perfect Competition<span class="ln-dot upcoming"></span></span></li>
+    <li class="left-nav-item upcoming"><span><span class="ln-num">W9</span>Monopoly<span class="ln-dot upcoming"></span></span></li>
+    <li class="left-nav-item upcoming"><span><span class="ln-num">W10</span>Oligopoly<span class="ln-dot upcoming"></span></span></li>
+    <li class="left-nav-item upcoming"><span><span class="ln-num">W11</span>Externalities<span class="ln-dot upcoming"></span></span></li>
+    <li class="left-nav-item upcoming"><span><span class="ln-num">W12</span>Information &amp; Review<span class="ln-dot upcoming"></span></span></li>
+  </ul>
+</nav>
 
 <div class="sidebar-overlay" id="overlay" onclick="closeSidebar()"></div>
 
@@ -329,7 +398,6 @@
     <button class="sidebar-close" onclick="closeSidebar()">&#x2715;</button>
   </div>
   <ul class="sidebar-nav">
-    <li><a href="#opening"     onclick="closeSidebar()"><span class="nav-icon">&#x2753;</span> Opening Questions</a></li>
     <li><a href="#objectives"  onclick="closeSidebar()"><span class="nav-icon">&#127919;</span> Learning Objectives</a></li>
     <li><a href="#topics"      onclick="closeSidebar()"><span class="nav-icon">&#128218;</span> Chapter Sections</a></li>
     <li><a href="#rules"       onclick="closeSidebar()"><span class="nav-icon">&#128208;</span> Differentiation Rules</a></li>
@@ -354,6 +422,7 @@
       <span>Week 1</span>
     </div>
   </div>
+  <button class="left-nav-toggle" onclick="openLN()">&#9776;&nbsp; Weeks</button>
   <button class="nav-toggle" onclick="openSidebar()">&#9776;&nbsp; Contents</button>
 </div>
 
@@ -373,18 +442,6 @@
     </div>
   </div>
 
-  <section class="section" id="opening">
-    <p class="section-label">This Week&rsquo;s Puzzles</p>
-    <h2>Questions This Chapter Answers</h2>
-    <div class="questions-grid">
-      <div class="q-card">Why do people choose to do anything at all? What drives economic decisions?</div>
-      <div class="q-card">When you skip a lecture to sleep in, what is the true cost of that decision?</div>
-      <div class="q-card">Can we measure how happy a consumer is without asking them to put a number on it?</div>
-      <div class="q-card">Why does consuming more of something eventually feel less satisfying?</div>
-      <div class="q-card">How do we represent a consumer&rsquo;s preferences visually without using numbers?</div>
-      <div class="q-card">Why does a rational consumer always prefer a mix of two goods over extremes?</div>
-    </div>
-  </section>
 
   <section class="section" id="objectives">
     <p class="section-label">Learning Objectives</p>
@@ -907,6 +964,8 @@
 </main>
 
 <script>
+  function openLN()  { document.getElementById('leftNav').classList.add('open'); document.getElementById('lnOverlay').classList.add('open'); }
+  function closeLN() { document.getElementById('leftNav').classList.remove('open'); document.getElementById('lnOverlay').classList.remove('open'); }
   function openSidebar()  { document.getElementById('sidebar').classList.add('open'); document.getElementById('overlay').classList.add('open'); }
   function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); }
   function toggleAcc(btn) {
