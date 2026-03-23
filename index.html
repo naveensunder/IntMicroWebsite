@@ -23,13 +23,13 @@
       --accent-mid:   #c7d9fd;
       --font:         'DM Sans', system-ui, sans-serif;
       --mono:         'DM Mono', monospace;
-      --max-w:        780px;
+      --max-w:        1100px;
     }
 
     html { scroll-behavior: smooth; }
     body {
       font-family: var(--font);
-      font-size: 15px;
+      font-size: 16.5px;
       line-height: 1.65;
       color: var(--text);
       background: var(--white);
@@ -42,16 +42,16 @@
       background: rgba(255,255,255,0.97);
       backdrop-filter: blur(6px);
       border-bottom: 1px solid var(--rule);
-      height: 44px;
+      height: 52px;
       display: flex; align-items: center;
-      padding: 0 1.25rem; gap: 0.75rem;
+      padding: 0 2.5rem; gap: 0.9rem;
     }
-    .bentley-logo { height: 26px; width: auto; display: block; }
-    .top-bar-divider { width: 1px; height: 18px; background: var(--rule); flex-shrink: 0; }
-    .top-bar-course { font-size: 0.78rem; color: var(--muted); font-weight: 500; }
+    .bentley-logo { height: 30px; width: auto; display: block; }
+    .top-bar-divider { width: 1px; height: 20px; background: var(--rule); flex-shrink: 0; }
+    .top-bar-course { font-size: 0.88rem; color: var(--muted); font-weight: 500; }
 
     /* ── Main ── */
-    .main { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem 4rem; }
+    .main { max-width: var(--max-w); margin: 0 auto; padding: 0 2.5rem 4rem; }
 
     /* ── Header ── */
     .course-header {
@@ -59,36 +59,36 @@
       border-bottom: 1px solid var(--rule);
     }
     .course-tag {
-      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem;
     }
     .course-header h1 {
-      font-size: 1.65rem; font-weight: 600; line-height: 1.2;
-      color: var(--text); margin-bottom: 0.3rem;
+      font-size: 2.1rem; font-weight: 600; line-height: 1.2;
+      color: var(--text); margin-bottom: 0.35rem;
     }
     .course-meta {
       display: flex; align-items: center; gap: 1rem;
-      font-size: 0.82rem; color: var(--muted); flex-wrap: wrap;
+      font-size: 0.92rem; color: var(--muted); flex-wrap: wrap;
     }
     .course-meta-sep { color: var(--rule); }
     .course-description {
-      margin-top: 0.75rem;
-      font-size: 0.88rem;
+      margin-top: 0.85rem;
+      font-size: 0.97rem;
       font-style: italic;
       color: var(--muted);
-      max-width: 580px;
+      max-width: 700px;
       line-height: 1.6;
     }
 
     /* ── How to use ── */
     .how-to-use {
       margin-top: 1rem;
-      padding: 0.55rem 0.8rem;
+      padding: 0.65rem 0.95rem;
       background: var(--off-white);
       border: 1px solid var(--rule);
       border-left: 3px solid var(--accent);
       border-radius: 0 6px 6px 0;
-      font-size: 0.78rem;
+      font-size: 0.88rem;
       color: var(--muted);
       line-height: 1.55;
     }
@@ -97,20 +97,20 @@
     /* ── Progress bar ── */
     .progress-row {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 0 0.5rem;
+      padding: 1.2rem 0 0.6rem;
       gap: 1rem;
     }
-    .progress-label { font-size: 0.72rem; color: var(--muted); font-weight: 500; white-space: nowrap; }
+    .progress-label { font-size: 0.82rem; color: var(--muted); font-weight: 500; white-space: nowrap; }
     .progress-track {
       flex: 1; height: 4px; background: var(--rule); border-radius: 99px; overflow: hidden;
     }
-    .progress-fill { height: 100%; background: var(--accent); border-radius: 99px; width: 16.7%; /* 2 of 12 */ }
+    .progress-fill { height: 100%; background: var(--accent); border-radius: 99px; width: 16.7%; }
 
     /* ── Week grid ── */
     .week-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 0.55rem;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.7rem;
       padding-bottom: 0.5rem;
     }
 
@@ -119,8 +119,8 @@
       display: block;
       text-decoration: none;
       border: 1px solid var(--rule);
-      border-radius: 8px;
-      padding: 0.85rem 0.95rem;
+      border-radius: 9px;
+      padding: 1.05rem 1.15rem;
       transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
       position: relative;
       background: var(--white);
@@ -141,54 +141,54 @@
     .week-card.upcoming .wc-title,
     .week-card.upcoming .wc-tags { opacity: 0.45; }
 
-    .wc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.3rem; }
+    .wc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.38rem; }
     .wc-num {
-      font-family: var(--mono); font-size: 0.65rem; font-weight: 500;
+      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
       color: var(--accent); letter-spacing: 0.04em;
     }
     .wc-num.upcoming { color: var(--muted); }
     .wc-badge {
-      font-size: 0.58rem; font-weight: 600; letter-spacing: 0.06em;
+      font-size: 0.63rem; font-weight: 600; letter-spacing: 0.06em;
       text-transform: uppercase; border-radius: 4px;
-      padding: 0.08rem 0.35rem;
+      padding: 0.1rem 0.4rem;
     }
     .wc-badge.published { background: #dcfce7; color: #16a34a; }
     .wc-badge.soon { background: var(--off-white); color: var(--muted); border: 1px solid var(--rule); }
 
     .wc-title {
-      font-size: 0.86rem; font-weight: 500; color: var(--text);
-      line-height: 1.35; margin-bottom: 0.45rem;
+      font-size: 0.97rem; font-weight: 500; color: var(--text);
+      line-height: 1.35; margin-bottom: 0.5rem;
     }
-    .wc-tags { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+    .wc-tags { display: flex; flex-wrap: wrap; gap: 0.28rem; }
     .wc-tag {
-      font-size: 0.62rem; color: var(--muted);
+      font-size: 0.68rem; color: var(--muted);
       background: var(--off-white); border: 1px solid var(--rule);
-      border-radius: 4px; padding: 0.05rem 0.32rem;
+      border-radius: 4px; padding: 0.06rem 0.36rem;
     }
     .week-card:hover .wc-tag { background: white; }
 
     /* Section dividers within grid */
     .grid-section-label {
       grid-column: 1 / -1;
-      font-size: 0.67rem; font-weight: 600; letter-spacing: 0.1em;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--muted);
-      padding: 0.6rem 0 0.1rem;
+      padding: 0.7rem 0 0.15rem;
       border-top: 1px solid var(--rule);
       margin-top: 0.2rem;
     }
-    .grid-section-label:first-child { border-top: none; padding-top: 0.9rem; }
+    .grid-section-label:first-child { border-top: none; padding-top: 1rem; }
 
     /* ── Footer ── */
     .site-footer {
-      padding: 1.5rem 0 0;
+      padding: 1.8rem 0 0;
       border-top: 1px solid var(--rule);
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 0.5rem;
     }
-    .footer-left { font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
+    .footer-left { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
     .footer-left a { color: var(--muted); text-decoration: none; }
     .footer-left a:hover { color: var(--accent); }
-    .footer-logo { height: 22px; opacity: 0.55; }
+    .footer-logo { height: 24px; opacity: 0.55; }
   </style>
 </head>
 <body>
@@ -206,14 +206,12 @@
 
   <!-- Course header -->
   <header class="course-header">
-    <p class="course-tag">EC224 · Spring 2026 · Bentley University</p>
+    <p class="course-tag">EC224 · Bentley University</p>
     <h1>Intermediate Microeconomics</h1>
     <div class="course-meta">
       <span>Prof. Naveen Sunder</span>
       <span class="course-meta-sep">·</span>
       <span>12 Weeks</span>
-      <span class="course-meta-sep">·</span>
-      <span>27 practice questions per week</span>
     </div>
     <p class="course-description">
       A rigorous treatment of consumer theory, producer theory, market structure, and welfare economics — with emphasis on analytical reasoning, graphical intuition, and real-world application.
@@ -408,7 +406,7 @@
   <footer class="site-footer" role="contentinfo">
     <div class="footer-left">
       <a href="https://www.bentley.edu" target="_blank" rel="noopener">Bentley University</a>
-      &nbsp;·&nbsp; EC224 Intermediate Microeconomics &nbsp;·&nbsp; Spring 2026
+      &nbsp;·&nbsp; EC224 Intermediate Microeconomics
     </div>
     <img src="assets/bentleylogo.png" alt="Bentley University" class="footer-logo" />
   </footer>
