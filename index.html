@@ -192,48 +192,41 @@
 
     /* ── Left week nav ─────────────────────────────── */
     .left-nav {
-      position: fixed; top: 52px; left: 0; width: 200px;
+      position: fixed; top: 52px; left: 0; width: 188px;
       height: calc(100vh - 52px); background: var(--white);
       border-right: 1px solid var(--rule); overflow-y: auto;
       z-index: 150; transform: translateX(-100%); transition: transform 0.25s ease;
-      display: flex; flex-direction: column; padding: 0.75rem 0;
+      display: flex; flex-direction: column; padding: 0.6rem 0;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.06);
     }
     .left-nav.open { transform: translateX(0); }
     .left-nav-header {
       font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--muted);
-      padding: 0.4rem 1rem 0.5rem; border-bottom: 1px solid var(--rule);
-      margin-bottom: 0.35rem;
+      padding: 0.35rem 1rem 0.45rem; border-bottom: 1px solid var(--rule);
+      margin-bottom: 0.3rem;
     }
     .left-nav ul { list-style: none; padding: 0; margin: 0; }
     .left-nav-item a, .left-nav-item span {
-      display: flex; align-items: baseline; gap: 0.4rem;
-      padding: 0.32rem 1rem; font-size: 0.78rem; color: var(--text);
-      text-decoration: none; line-height: 1.35; transition: background 0.1s;
+      display: block; padding: 0.3rem 1rem;
+      font-size: 0.82rem; color: var(--text);
+      text-decoration: none; transition: background 0.1s;
     }
     .left-nav-item a:hover { background: var(--accent-light); color: var(--accent); }
-    .left-nav-item.upcoming span { color: var(--muted); cursor: default; }
-    .ln-num { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); flex-shrink: 0; min-width: 22px; }
-    .left-nav-item.upcoming .ln-num { color: var(--rule); }
-    .ln-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-left: auto; margin-right: 0.1rem; }
-    .ln-dot.published { background: #16a34a; }
-    .ln-dot.upcoming  { background: var(--rule); }
+    .left-nav-item.active > a {
+      background: var(--accent-light); color: var(--accent); font-weight: 600;
+      border-left: 3px solid var(--accent); padding-left: calc(1rem - 3px);
+    }
+    .left-nav-item.upcoming span { color: var(--muted); cursor: default; font-size: 0.82rem; }
     .left-nav-toggle {
       display: flex; align-items: center; gap: 0.35rem;
       background: none; border: 1px solid var(--rule); border-radius: 6px;
-      padding: 0.28rem 0.65rem; font-family: var(--font); font-size: 0.88rem;
+      padding: 0.28rem 0.65rem; font-family: var(--font); font-size: 0.75rem;
       color: var(--muted); cursor: pointer; transition: all 0.15s;
     }
     .left-nav-toggle:hover { border-color: var(--accent); color: var(--accent); }
-    .left-nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.15); z-index: 140; }
+    .left-nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.18); z-index: 140; }
     .left-nav-overlay.open { display: block; }
-    @media (min-width: 900px) {
-      .left-nav { transform: translateX(0); }
-      .left-nav-overlay { display: none !important; }
-      .left-nav-toggle { display: none; }
-      .main { margin-left: 200px; }
-    }
-    @media (max-width: 899px) { .main { margin-left: 0; } }
 
   </style>
 </head>
@@ -250,20 +243,20 @@
 
 <div class="left-nav-overlay" id="lnOverlay" onclick="closeLN()"></div>
 <nav class="left-nav" id="leftNav" aria-label="Course weeks">
-  <div class="left-nav-header">EC224 &mdash; All Weeks</div>
+  <div class="left-nav-header">EC224</div>
   <ul>
-    <li class="left-nav-item published"><a href="week1.html"><span class="ln-num">W1</span>Foundations<span class="ln-dot published"></span></a></li>
-    <li class="left-nav-item published"><a href="week2.html"><span class="ln-num">W2</span>Consumer Optimum<span class="ln-dot published"></span></a></li>
-    <li class="left-nav-item upcoming"><span><span class="ln-num">W3</span>Demand Curves<span class="ln-dot upcoming"></span></span></li>
-    <li class="left-nav-item upcoming"><span><span class="ln-num">W4</span>Elasticity &amp; Welfare<span class="ln-dot upcoming"></span></span></li>
-    <li class="left-nav-item upcoming"><span><span class="ln-num">W5</span>Production &amp; Isoquants<span class="ln-dot upcoming"></span></span></li>
-    <li class="left-nav-item upcoming"><span><span class="ln-num">W6</span>Cost Curves<span class="ln-dot upcoming"></span></span></li>
-    <li class="left-nav-item upcoming"><span><span class="ln-num">W7</span>Profit &amp; Supply<span class="ln-dot upcoming"></span></span></li>
-    <li class="left-nav-item upcoming"><span><span class="ln-num">W8</span>Perfect Competition<span class="ln-dot upcoming"></span></span></li>
-    <li class="left-nav-item upcoming"><span><span class="ln-num">W9</span>Monopoly<span class="ln-dot upcoming"></span></span></li>
-    <li class="left-nav-item upcoming"><span><span class="ln-num">W10</span>Oligopoly<span class="ln-dot upcoming"></span></span></li>
-    <li class="left-nav-item upcoming"><span><span class="ln-num">W11</span>Externalities<span class="ln-dot upcoming"></span></span></li>
-    <li class="left-nav-item upcoming"><span><span class="ln-num">W12</span>Information &amp; Review<span class="ln-dot upcoming"></span></span></li>
+    <li class="left-nav-item published"><a href="week1.html">Week 1</a></li>
+    <li class="left-nav-item published"><a href="week2.html">Week 2</a></li>
+    <li class="left-nav-item upcoming"><span>Week 3</span></li>
+    <li class="left-nav-item upcoming"><span>Week 4</span></li>
+    <li class="left-nav-item upcoming"><span>Week 5</span></li>
+    <li class="left-nav-item upcoming"><span>Week 6</span></li>
+    <li class="left-nav-item upcoming"><span>Week 7</span></li>
+    <li class="left-nav-item upcoming"><span>Week 8</span></li>
+    <li class="left-nav-item upcoming"><span>Week 9</span></li>
+    <li class="left-nav-item upcoming"><span>Week 10</span></li>
+    <li class="left-nav-item upcoming"><span>Week 11</span></li>
+    <li class="left-nav-item upcoming"><span>Week 12</span></li>
   </ul>
 </nav>
 
