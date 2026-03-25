@@ -9,226 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --white:        #ffffff;
-      --off-white:    #f7f7f7;
-      --rule:         #e4e4e4;
-      --text:         #1a1a1a;
-      --muted:        #6b6b6b;
-      --accent:       #1a56db;
-      --accent-light: #eff4ff;
-      --accent-mid:   #c7d9fd;
-      --font:         'DM Sans', system-ui, sans-serif;
-      --mono:         'DM Mono', monospace;
-      --max-w:        1100px;
-    }
-
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font);
-      font-size: 16.5px;
-      line-height: 1.65;
-      color: var(--text);
-      background: var(--white);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── Top bar ── */
-    .top-bar {
-      position: sticky; top: 0; z-index: 200;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid var(--rule);
-      height: 52px;
-      display: flex; align-items: center;
-      padding: 0 2.5rem; gap: 0.9rem;
-    }
-    .bentley-logo { height: 30px; width: auto; display: block; }
-    .top-bar-divider { width: 1px; height: 20px; background: var(--rule); flex-shrink: 0; }
-    .top-bar-course { font-size: 0.88rem; color: var(--muted); font-weight: 500; }
-
-    /* ── Main ── */
-    .main { max-width: var(--max-w); margin: 0 auto; padding: 0 2.5rem 4rem; }
-
-    /* ── Header ── */
-    .course-header {
-      padding: 2rem 0 1.4rem;
-      border-bottom: 1px solid var(--rule);
-    }
-    .course-tag {
-      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem;
-    }
-    .course-header h1 {
-      font-size: 2.1rem; font-weight: 600; line-height: 1.2;
-      color: var(--text); margin-bottom: 0.35rem;
-    }
-    .course-meta {
-      display: flex; align-items: center; gap: 1rem;
-      font-size: 0.92rem; color: var(--muted); flex-wrap: wrap;
-    }
-    .course-meta-sep { color: var(--rule); }
-    .course-description {
-      margin-top: 0.85rem;
-      font-size: 0.97rem;
-      font-style: italic;
-      color: var(--muted);
-      max-width: 700px;
-      line-height: 1.6;
-    }
-
-    /* ── How to use ── */
-    .how-to-use {
-      margin-top: 1rem;
-      padding: 0.65rem 0.95rem;
-      background: var(--off-white);
-      border: 1px solid var(--rule);
-      border-left: 3px solid var(--accent);
-      border-radius: 0 6px 6px 0;
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-    .how-to-use strong { color: var(--text); font-weight: 500; }
-
-    /* ── Progress bar ── */
-    .progress-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.2rem 0 0.6rem;
-      gap: 1rem;
-    }
-    .progress-label { font-size: 0.82rem; color: var(--muted); font-weight: 500; white-space: nowrap; }
-    .progress-track {
-      flex: 1; height: 4px; background: var(--rule); border-radius: 99px; overflow: hidden;
-    }
-    .progress-fill { height: 100%; background: var(--accent); border-radius: 99px; width: 16.7%; }
-
-    /* ── Week grid ── */
-    .week-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 0.7rem;
-      padding-bottom: 0.5rem;
-    }
-
-    /* Published week card */
-    .week-card {
-      display: block;
-      text-decoration: none;
-      border: 1px solid var(--rule);
-      border-radius: 9px;
-      padding: 1.05rem 1.15rem;
-      transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
-      position: relative;
-      background: var(--white);
-    }
-    .week-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 2px 12px rgba(26,86,219,0.08);
-      background: var(--accent-light);
-    }
-    .week-card:hover .wc-num { color: var(--accent); }
-
-    /* Upcoming (greyed) card */
-    .week-card.upcoming {
-      background: var(--off-white);
-      cursor: default;
-      pointer-events: none;
-    }
-    .week-card.upcoming .wc-title,
-    .week-card.upcoming .wc-tags { opacity: 0.45; }
-
-    .wc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.38rem; }
-    .wc-num {
-      font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-      color: var(--accent); letter-spacing: 0.04em;
-    }
-    .wc-num.upcoming { color: var(--muted); }
-    .wc-badge {
-      font-size: 0.63rem; font-weight: 600; letter-spacing: 0.06em;
-      text-transform: uppercase; border-radius: 4px;
-      padding: 0.1rem 0.4rem;
-    }
-    .wc-badge.published { background: #dcfce7; color: #16a34a; }
-    .wc-badge.soon { background: var(--off-white); color: var(--muted); border: 1px solid var(--rule); }
-
-    .wc-title {
-      font-size: 0.97rem; font-weight: 500; color: var(--text);
-      line-height: 1.35; margin-bottom: 0.5rem;
-    }
-    .wc-tags { display: flex; flex-wrap: wrap; gap: 0.28rem; }
-    .wc-tag {
-      font-size: 0.68rem; color: var(--muted);
-      background: var(--off-white); border: 1px solid var(--rule);
-      border-radius: 4px; padding: 0.06rem 0.36rem;
-    }
-    .week-card:hover .wc-tag { background: white; }
-
-    /* Section dividers within grid */
-    .grid-section-label {
-      grid-column: 1 / -1;
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--muted);
-      padding: 0.7rem 0 0.15rem;
-      border-top: 1px solid var(--rule);
-      margin-top: 0.2rem;
-    }
-    .grid-section-label:first-child { border-top: none; padding-top: 1rem; }
-
-    /* ── Footer ── */
-    .site-footer {
-      padding: 1.8rem 0 0;
-      border-top: 1px solid var(--rule);
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 0.5rem;
-    }
-    .footer-left { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
-    .footer-left a { color: var(--muted); text-decoration: none; }
-    .footer-left a:hover { color: var(--accent); }
-    .footer-logo { height: 24px; opacity: 0.55; }
-
-    /* ── Left week nav ─────────────────────────────── */
-    .left-nav {
-      position: fixed; top: 52px; left: 0; width: 188px;
-      height: calc(100vh - 52px); background: var(--white);
-      border-right: 1px solid var(--rule); overflow-y: auto;
-      z-index: 150; transform: translateX(-100%); transition: transform 0.25s ease;
-      display: flex; flex-direction: column; padding: 0.6rem 0;
-      box-shadow: 2px 0 12px rgba(0,0,0,0.06);
-    }
-    .left-nav.open { transform: translateX(0); }
-    .left-nav-header {
-      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--muted);
-      padding: 0.35rem 1rem 0.45rem; border-bottom: 1px solid var(--rule);
-      margin-bottom: 0.3rem;
-    }
-    .left-nav ul { list-style: none; padding: 0; margin: 0; }
-    .left-nav-item a, .left-nav-item span {
-      display: block; padding: 0.3rem 1rem;
-      font-size: 0.82rem; color: var(--text);
-      text-decoration: none; transition: background 0.1s;
-    }
-    .left-nav-item a:hover { background: var(--accent-light); color: var(--accent); }
-    .left-nav-item.active > a {
-      background: var(--accent-light); color: var(--accent); font-weight: 600;
-      border-left: 3px solid var(--accent); padding-left: calc(1rem - 3px);
-    }
-    .left-nav-item.upcoming span { color: var(--muted); cursor: default; font-size: 0.82rem; }
-    .left-nav-toggle {
-      display: flex; align-items: center; gap: 0.35rem;
-      background: none; border: 1px solid var(--rule); border-radius: 6px;
-      padding: 0.28rem 0.65rem; font-family: var(--font); font-size: 0.75rem;
-      color: var(--muted); cursor: pointer; transition: all 0.15s;
-    }
-    .left-nav-toggle:hover { border-color: var(--accent); color: var(--accent); }
-    .left-nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.18); z-index: 140; }
-    .left-nav-overlay.open { display: block; }
-
-  </style>
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="shared.css" />
 </head>
 <body>
 
@@ -247,16 +29,16 @@
   <ul>
     <li class="left-nav-item published"><a href="week1.html">Week 1</a></li>
     <li class="left-nav-item published"><a href="week2.html">Week 2</a></li>
-    <li class="left-nav-item upcoming"><span>Week 3</span></li>
-    <li class="left-nav-item upcoming"><span>Week 4</span></li>
-    <li class="left-nav-item upcoming"><span>Week 5</span></li>
-    <li class="left-nav-item upcoming"><span>Week 6</span></li>
-    <li class="left-nav-item upcoming"><span>Week 7</span></li>
-    <li class="left-nav-item upcoming"><span>Week 8</span></li>
-    <li class="left-nav-item upcoming"><span>Week 9</span></li>
-    <li class="left-nav-item upcoming"><span>Week 10</span></li>
-    <li class="left-nav-item upcoming"><span>Week 11</span></li>
-    <li class="left-nav-item upcoming"><span>Week 12</span></li>
+    <li class="left-nav-item upcoming"><a href="index.html">Week 3</a></li>
+    <li class="left-nav-item upcoming"><a href="index.html">Week 4</a></li>
+    <li class="left-nav-item upcoming"><a href="index.html">Week 5</a></li>
+    <li class="left-nav-item upcoming"><a href="index.html">Week 6</a></li>
+    <li class="left-nav-item upcoming"><a href="index.html">Week 7</a></li>
+    <li class="left-nav-item upcoming"><a href="index.html">Week 8</a></li>
+    <li class="left-nav-item upcoming"><a href="index.html">Week 9</a></li>
+    <li class="left-nav-item upcoming"><a href="index.html">Week 10</a></li>
+    <li class="left-nav-item upcoming"><a href="index.html">Week 11</a></li>
+    <li class="left-nav-item upcoming"><a href="index.html">Week 12</a></li>
   </ul>
 </nav>
 
